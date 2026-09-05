@@ -153,6 +153,27 @@ td,tbody th{padding:9px 10px;vertical-align:middle}
 .tmpl pre{font-family:var(--mono);font-size:12.5px;line-height:2;margin:0;
   white-space:pre-wrap;color:var(--ink)}
 .note{margin-top:14px;font-size:12.5px;color:var(--ink3);max-width:64ch}
+
+/* 作業手順 */
+.howto{background:var(--panel);border:1px solid var(--rule);border-top:3px solid var(--accent);
+  padding:24px clamp(20px,3vw,32px);margin:0 0 30px}
+.howto h2{margin:0 0 4px}
+.due{display:inline-block;font-family:var(--mono);font-size:11.5px;font-weight:600;
+  letter-spacing:.06em;color:var(--crit);background:var(--crit-soft);padding:3px 9px;margin-bottom:14px}
+.steps{list-style:none;counter-reset:st;margin:18px 0 0;padding:0;display:flex;
+  flex-direction:column;gap:16px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:30px 1fr;gap:14px;align-items:start}
+.steps li::before{content:counter(st);font-family:var(--mono);font-size:12px;font-weight:600;
+  color:var(--panel);background:var(--accent);width:26px;height:26px;display:flex;
+  align-items:center;justify-content:center;margin-top:2px}
+.steps h3{margin:0 0 3px;font-size:14.5px;font-weight:700;font-family:var(--body);letter-spacing:.02em}
+.steps p{margin:0;font-size:13px;color:var(--ink2);line-height:1.8;max-width:66ch}
+.steps .who{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;
+  padding:1px 7px;border:1px solid currentColor;margin-left:8px;vertical-align:2px}
+.w-n{color:var(--warn)} .w-i{color:var(--accent)}
+.howto .kv{margin:20px 0 0;padding:14px 18px;background:var(--accent-soft);font-size:12.5px;
+  color:var(--ink2);line-height:1.85}
+.howto .kv strong{color:var(--ink)}
 footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);
   font-family:var(--mono);font-size:11px;color:var(--ink3);letter-spacing:.04em;line-height:1.9}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -174,6 +195,26 @@ footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);
 <div class="ptrack"><div class="pfill" id="pf-igarashi"></div></div></div>
 <div class="pcard sync"><div class="slabel"><span class="dot" id="syncdot"></span><span id="synctext">同期サーバーに接続中…</span></div>
 <p class="shint">ログイン不要です。チェックはこのページを開いている全員に自動で共有され、リロードしても残ります。</p></div>
+</section>
+
+<section class="howto">
+<h2>作業の進めかた</h2>
+<p class="due">期限：9月8日（火）まで</p>
+<p class="sub" style="font-size:13.5px">野本さんが修正 → 五十嵐さんが確認、の 2 段階で進めます。どこまで進んだかはこのページのチェック欄で全員が見られます。</p>
+<ol class="steps">
+<li><div><h3>欠落している項目を確認する<span class="who w-n">野本</span></h3>
+<p>下の「欠落項目マトリクス」で <strong>赤い「欠」</strong> が付いている項目が、その物件の紹介文に書かれていない項目です。欠落数の多い物件から順に並んでいるので、上から進めてください。物件 ID をクリックすると楽待の掲載ページが開きます。</p></div></li>
+<li><div><h3>書き足す数値を用意する<span class="who w-n">野本</span></h3>
+<p>表面利回り・現況利回りは在庫表の「想定利回り」「現況利回り」列から、入居状況はレントロールから、積算価格は積算資料から転記します。数値が見当たらない物件は、そのまま止めずに五十嵐さんへ確認してください。</p></div></li>
+<li><div><h3>紹介文を書き換える<span class="who w-n">野本</span></h3>
+<p>みらいえの管理画面（楽待へ配信している元データ）で該当物件を開き、紹介文を下の「推奨する記載フォーマット」の並びに直します。<strong>既存のアピール文は消さず</strong>、冒頭に数値ブロックを足して、続けて既存の文章を箇条書きに整理する形で構いません。</p></div></li>
+<li><div><h3>「野本」列にチェックを入れる<span class="who w-n">野本</span></h3>
+<p>楽待側への反映を確認できたら、その物件の行の「野本」列にチェックを入れます。チェックは自動保存され、五十嵐さん・薩摩さんの画面にもすぐ反映されます。</p></div></li>
+<li><div><h3>内容を確認して「五十嵐」列にチェック<span class="who w-i">五十嵐</span></h3>
+<p>「野本」列にチェックが付いた物件から順に、楽待の掲載ページを開いて 5 項目が入っているか・表記が読みやすいかを確認し、問題なければ「五十嵐」列にチェックを入れてください。直しが必要な場合はチェックを入れずに野本さんへ差し戻しをお願いします。</p></div></li>
+</ol>
+<p class="kv"><strong>必須の 5 項目：</strong>表面利回り／現況利回り／空室率（現況の空室の割合）／賃貸中率（賃貸中の割合）／積算価格。<br>
+戸建など 1 戸の物件は「賃貸中（オーナーチェンジ）」または「空室（想定賃料 月額 00,000 円）」と書けば、空室率・賃貸中率の要件を満たしたものとして扱います。土地は利回り・入居状況の記載は不要で、積算価格のみ必須です。</p>
 </section>
 
 <div class="verdict">
