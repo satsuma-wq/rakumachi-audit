@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>楽待掲載 紹介文の総点検</title>
-<meta name="description" content="楽待に掲載中の自社物件40件について、紹介文の必須5項目の記載漏れを点検した結果">
+<meta name="description" content="楽待に掲載中の自社物件40件について、紹介文の必須5項目の記載漏れを点検した結果と修正チェック表">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
@@ -38,11 +38,13 @@
   --ok:#77c295; --ok-soft:#1c2b21;
 }
 *{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.75;
+html{color-scheme:light dark}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.75;
   font-feature-settings:"palt";-webkit-font-smoothing:antialiased}
-.wrap{max-width:1120px;margin:0 auto;padding:clamp(28px,5vw,64px) clamp(18px,4vw,40px) 96px}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(28px,5vw,64px) clamp(18px,4vw,40px) 96px}
 a{color:var(--accent)}
-header.top{border-bottom:2px solid var(--ink);padding-bottom:22px;margin-bottom:34px}
+header.top{border-bottom:2px solid var(--ink);padding-bottom:22px;margin-bottom:28px}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink3);
   text-transform:uppercase;margin:0 0 12px}
 h1{font-family:var(--disp);font-weight:800;font-size:clamp(28px,4.4vw,44px);line-height:1.28;
@@ -53,6 +55,27 @@ h1{font-family:var(--disp);font-weight:800;font-size:clamp(28px,4.4vw,44px);line
 h2{font-family:var(--disp);font-weight:600;font-size:20px;margin:0 0 4px;letter-spacing:.03em}
 .sechead{margin:52px 0 20px;padding-bottom:9px;border-bottom:1px solid var(--rule)}
 .sechead p{margin:2px 0 0;font-size:13.5px;color:var(--ink2)}
+
+/* 進捗バー（担当者チェック） */
+.progress{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;
+  margin:0 0 26px}
+.pcard{background:var(--panel);border:1px solid var(--rule);padding:15px 18px;
+  display:flex;flex-direction:column;gap:9px}
+.pcard.sync{border-left:3px solid var(--accent)}
+.ph{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.pn{font-size:13px;font-weight:700;letter-spacing:.03em}
+.pv{font-family:var(--mono);font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;
+  color:var(--accent)}
+.pv small{font-size:11px;color:var(--ink3);font-weight:500}
+.ptrack{height:7px;background:var(--rule2);overflow:hidden}
+.pfill{height:100%;background:var(--accent);width:0;transition:width .25s ease}
+@media (prefers-reduced-motion:reduce){.pfill{transition:none}}
+.slabel{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ink3);flex:none}
+.dot.on{background:var(--ok)}
+.dot.off{background:var(--warn)}
+.shint{font-size:11.5px;color:var(--ink3);margin:0;line-height:1.6}
+
 .verdict{background:var(--crit-soft);border-left:4px solid var(--crit);padding:18px 22px;
   display:flex;gap:20px;align-items:baseline;flex-wrap:wrap}
 .verdict .big{font-family:var(--mono);font-weight:600;font-size:32px;color:var(--crit);
@@ -61,19 +84,22 @@ h2{font-family:var(--disp);font-weight:600;font-size:20px;margin:0 0 4px;letter-
 .bars{display:flex;flex-direction:column;gap:11px;margin-top:26px}
 .bar{display:grid;grid-template-columns:6.2em 1fr 4.4em;align-items:center;gap:14px}
 .bl{font-size:13px;color:var(--ink2);font-weight:500}
-.btrack{height:9px;background:var(--rule2);border-radius:0;overflow:hidden}
+.btrack{height:9px;background:var(--rule2);overflow:hidden}
 .bfill{height:100%;background:var(--crit);opacity:.82}
 .bv{font-family:var(--mono);font-size:14px;font-weight:600;text-align:right;
   font-variant-numeric:tabular-nums;color:var(--crit)}
 .bd2{color:var(--ink3);font-weight:500;font-size:11px}
+
 .tblwrap{overflow-x:auto;border:1px solid var(--rule);background:var(--panel)}
-table{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+table{border-collapse:collapse;width:100%;min-width:900px;font-size:13px}
 thead th{position:sticky;top:0;background:var(--panel);text-align:left;font-weight:700;
   font-size:11px;letter-spacing:.06em;color:var(--ink2);padding:11px 10px;
-  border-bottom:1.5px solid var(--ink);white-space:nowrap}
+  border-bottom:1.5px solid var(--ink);white-space:nowrap;z-index:2}
 thead th.rot{text-align:center;width:62px}
+thead th.who{text-align:center;width:82px;color:var(--accent)}
 tbody tr{border-bottom:1px solid var(--rule2)}
 tbody tr.b3{background:linear-gradient(90deg,var(--crit-soft) 0 3px,transparent 3px)}
+tbody tr.done{background:var(--ok-soft)}
 td,tbody th{padding:9px 10px;vertical-align:middle}
 .pid a{font-family:var(--mono);font-size:12px;font-weight:600;text-decoration:none}
 .pid a:hover{text-decoration:underline}
@@ -83,13 +109,28 @@ td,tbody th{padding:9px 10px;vertical-align:middle}
 .c.na{color:var(--ink3);opacity:.55}
 .cnum{text-align:center;font-family:var(--mono);font-weight:600;
   font-variant-numeric:tabular-nums;color:var(--ink2);width:46px}
+.ck{text-align:center;width:82px;border-left:1px solid var(--rule2)}
 .chip{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;
   letter-spacing:.06em;white-space:nowrap;border:1px solid currentColor}
 .k-ip{color:var(--accent)} .k-kd{color:var(--warn)} .k-tc{color:var(--ink3)}
+
+/* チェックボックス */
+.cbx{display:inline-flex;align-items:center;gap:8px;cursor:pointer;position:relative}
+.cbx input{position:absolute;opacity:0;width:22px;height:22px;margin:0;cursor:pointer}
+.box{width:20px;height:20px;border:1.5px solid var(--ink3);background:var(--panel);
+  display:inline-block;flex:none;position:relative;transition:background .12s,border-color .12s}
+.cbx input:checked + .box{background:var(--accent);border-color:var(--accent)}
+.cbx input:checked + .box::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:11px;
+  border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(42deg)}
+.cbx input:focus-visible + .box{outline:2px solid var(--accent);outline-offset:2px}
+.cbx.wide .cl{font-size:12px;font-weight:600;color:var(--ink2)}
+@media (prefers-reduced-motion:reduce){.box{transition:none}}
+
 .cards{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));margin-top:22px}
 .card{background:var(--panel);border:1px solid var(--rule);padding:18px 20px 20px;
   display:flex;flex-direction:column;gap:13px}
 .card.sev{border-top:3px solid var(--crit)}
+.card.done{border-color:var(--ok)}
 .card header{display:flex;flex-direction:column;gap:5px}
 .hl{display:flex;align-items:center;gap:9px}
 .cid{font-family:var(--mono);font-size:12px;font-weight:600;text-decoration:none}
@@ -103,20 +144,18 @@ td,tbody th{padding:9px 10px;vertical-align:middle}
   color:var(--ink3);text-transform:uppercase;margin-bottom:6px}
 .pt p{margin:0 0 .7em;font-size:13px;color:var(--ink2);line-height:1.85}
 .pt p:last-child{margin-bottom:0}
+.ckrow{margin-top:auto;border-top:1px solid var(--rule2);padding-top:13px;
+  display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.stamp{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-left:auto}
+
 .tmpl{background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--accent);
   padding:22px 26px;margin-top:20px}
 .tmpl pre{font-family:var(--mono);font-size:12.5px;line-height:2;margin:0;
   white-space:pre-wrap;color:var(--ink)}
 .note{margin-top:14px;font-size:12.5px;color:var(--ink3);max-width:64ch}
 footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);
-  font-family:var(--mono);font-size:11px;color:var(--ink3);letter-spacing:.04em}
+  font-family:var(--mono);font-size:11px;color:var(--ink3);letter-spacing:.04em;line-height:1.9}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
-<style>
-html{color-scheme:light dark}
-body{margin:0}
-img{max-width:100%}
 </style>
 </head>
 <body>
@@ -124,9 +163,18 @@ img{max-width:100%}
 <header class="top">
 <p class="eyebrow">楽待掲載物件 品質点検 / 株式会社ONE HOME</p>
 <h1>楽待掲載 紹介文の総点検</h1>
-<p class="sub">楽待に掲載中の全 40 件について、Point 欄（紹介文）に必須 5 項目 ―― 表面利回り・現況利回り・空室率・賃貸中率・積算価格 ―― が記載されているかを 1 件ずつ確認した結果です。</p>
+<p class="sub">楽待に掲載中の全 40 件について、Point 欄（紹介文）に必須 5 項目 ―― 表面利回り・現況利回り・空室率・賃貸中率・積算価格 ―― が記載されているかを 1 件ずつ確認した結果です。修正が済んだ物件は下のチェック欄にチェックを入れてください。</p>
 <div class="meta"><span>点検日 2026-09-05</span><span>対象 realtor_id 16659</span><span>一棟 20 / 戸建 15 / 土地 5</span></div>
 </header>
+
+<section class="progress">
+<div class="pcard"><div class="ph"><span class="pn">野本チェック</span><span class="pv" id="pv-nomoto">0<small>/40</small></span></div>
+<div class="ptrack"><div class="pfill" id="pf-nomoto"></div></div></div>
+<div class="pcard"><div class="ph"><span class="pn">五十嵐チェック</span><span class="pv" id="pv-igarashi">0<small>/40</small></span></div>
+<div class="ptrack"><div class="pfill" id="pf-igarashi"></div></div></div>
+<div class="pcard sync"><div class="slabel"><span class="dot" id="syncdot"></span><span id="synctext">同期サーバーに接続中…</span></div>
+<p class="shint">ログイン不要です。チェックはこのページを開いている全員に自動で共有され、リロードしても残ります。</p></div>
+</section>
 
 <div class="verdict">
 <span class="big">39<span style="font-size:16px;color:var(--ink3)">/40</span></span>
@@ -147,211 +195,332 @@ img{max-width:100%}
 <p class="note">※ 土地 5 件は利回り・空室率・賃貸中率を対象外（—）として集計しています。</p>
 
 <div class="sechead"><h2>欠落項目マトリクス</h2>
-<p>欠落数の多い順。物件 ID をクリックすると楽待の掲載ページが開きます。</p></div>
+<p>欠落数の多い順。物件 ID をクリックすると楽待の掲載ページが開きます。右端 2 列が担当者チェック欄で、両方入ると行が緑になります。</p></div>
 <div class="tblwrap"><table>
 <thead><tr><th>物件ID</th><th>種別</th><th>所在地</th>
-<th class="rot">表面利回り</th><th class="rot">現況利回り</th><th class="rot">空室率</th><th class="rot">賃貸中率</th><th class="rot">積算価格</th><th class="rot">欠落</th></tr></thead>
+<th class="rot">表面利回り</th><th class="rot">現況利回り</th><th class="rot">空室率</th><th class="rot">賃貸中率</th><th class="rot">積算価格</th><th class="rot">欠落</th>
+<th class="who">野本</th><th class="who">五十嵐</th></tr></thead>
 <tbody><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1002/3716742/show.html" target="_blank" rel="noopener">3716742</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">北海道名寄市東五条南３丁目</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">5</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td>
+<td class="cnum">5</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3716742" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3716742" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3604651/show.html" target="_blank" rel="noopener">3604651</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">北海道網走市字大曲</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">5</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td>
+<td class="cnum">5</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3604651" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3604651" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3684231/show.html" target="_blank" rel="noopener">3684231</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">北海道久遠郡せたな町瀬棚区三本杉</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">5</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td>
+<td class="cnum">5</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3684231" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3684231" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/kanto/chiba/dim1001/3591801/show.html" target="_blank" rel="noopener">3591801</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">千葉県香取市小見川</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">4</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">4</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3591801" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3591801" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/tohoku/yamagata/dim1002/3610058/show.html" target="_blank" rel="noopener">3610058</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">山形県新庄市小田島町</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">4</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td>
+<td class="cnum">4</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3610058" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3610058" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/kyushu/nagasaki/dim1002/3674905/show.html" target="_blank" rel="noopener">3674905</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">長崎県長崎市片淵５丁目</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">4</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">4</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3674905" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3674905" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/tohoku/miyagi/dim1002/3699061/show.html" target="_blank" rel="noopener">3699061</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">宮城県気仙沼市松崎浦田</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">4</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">4</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3699061" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3699061" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/tohoku/yamagata/dim1002/3720041/show.html" target="_blank" rel="noopener">3720041</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">山形県鶴岡市末広町</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">4</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">4</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3720041" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3720041" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/tohoku/iwate/dim1004/3491678/show.html" target="_blank" rel="noopener">3491678</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">岩手県久慈市大川目町第１４地割52-6</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">4</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td><td class="c miss">欠</td>
+<td class="cnum">4</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3491678" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3491678" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3515494/show.html" target="_blank" rel="noopener">3515494</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">北海道留萌市沖見町６丁目</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">4</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td>
+<td class="cnum">4</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3515494" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3515494" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/kanto/gunma/dim1004/3636767/show.html" target="_blank" rel="noopener">3636767</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">群馬県吾妻郡嬬恋村大字大前778-3</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">4</td></tr><tr class="b3">
+<td class="c ok">✓</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td>
+<td class="cnum">4</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3636767" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3636767" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/tohoku/akita/dim1004/3651431/show.html" target="_blank" rel="noopener">3651431</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">秋田県秋田市土崎港東１丁目</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">4</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">4</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3651431" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3651431" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3695088/show.html" target="_blank" rel="noopener">3695088</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">北海道稚内市栄４丁目</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">4</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">4</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3695088" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3695088" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/tohoku/iwate/dim1002/3590247/show.html" target="_blank" rel="noopener">3590247</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">岩手県宮古市黒田町</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">3</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td>
+<td class="cnum">3</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3590247" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3590247" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/tohoku/aomori/dim1002/3650121/show.html" target="_blank" rel="noopener">3650121</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">青森県むつ市大畑町南町</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">3</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">3</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3650121" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3650121" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1002/3676138/show.html" target="_blank" rel="noopener">3676138</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">北海道釧路市春採２丁目</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">3</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">3</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3676138" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3676138" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1002/3695156/show.html" target="_blank" rel="noopener">3695156</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">北海道稚内市宝来３丁目</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">3</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td>
+<td class="cnum">3</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3695156" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3695156" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/shikoku/kochi/dim1002/3715384/show.html" target="_blank" rel="noopener">3715384</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">高知県須崎市下分甲</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">3</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">3</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3715384" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3715384" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/shikoku/ehime/dim1001/3720034/show.html" target="_blank" rel="noopener">3720034</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">愛媛県四国中央市中之庄町</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">3</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td>
+<td class="cnum">3</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3720034" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3720034" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3496410/show.html" target="_blank" rel="noopener">3496410</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">北海道紋別市落石町１丁目</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">3</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">3</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3496410" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3496410" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/kyushu/oita/dim1004/3501574/show.html" target="_blank" rel="noopener">3501574</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">大分県中津市大字高瀬</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">3</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td>
+<td class="cnum">3</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3501574" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3501574" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/tohoku/iwate/dim1004/3616571/show.html" target="_blank" rel="noopener">3616571</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">岩手県盛岡市北山２丁目</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">3</td></tr><tr class="b3">
+<td class="c ok">✓</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td>
+<td class="cnum">3</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3616571" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3616571" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/chugoku/yamaguchi/dim1004/3698984/show.html" target="_blank" rel="noopener">3698984</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">山口県柳井市柳井</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">3</td></tr><tr class="b3">
+<td class="c ok">✓</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">3</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3698984" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3698984" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3705989/show.html" target="_blank" rel="noopener">3705989</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">北海道稚内市宝来４丁目</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">3</td></tr><tr class="b3">
+<td class="c miss">欠</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td>
+<td class="cnum">3</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3705989" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3705989" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b3">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3716275/show.html" target="_blank" rel="noopener">3716275</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">北海道北見市東相内町</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">3</td></tr><tr class="b1">
+<td class="c ok">✓</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">3</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3716275" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3716275" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/chugoku/yamaguchi/dim1001/3493098/show.html" target="_blank" rel="noopener">3493098</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">山口県下関市豊浦町大字川棚7277-3</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">2</td></tr><tr class="b1">
+<td class="c ok">✓</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td>
+<td class="cnum">2</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3493098" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3493098" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1002/3503881/show.html" target="_blank" rel="noopener">3503881</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">北海道岩見沢市上幌向南一条３丁目1250-15</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">2</td></tr><tr class="b1">
+<td class="c ok">✓</td><td class="c ok">✓</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">2</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3503881" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3503881" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/chugoku/hiroshima/dim1001/3608164/show.html" target="_blank" rel="noopener">3608164</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">広島県三次市南畑敷町</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">2</td></tr><tr class="b1">
+<td class="c ok">✓</td><td class="c miss">欠</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td>
+<td class="cnum">2</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3608164" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3608164" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/tohoku/akita/dim1002/3650082/show.html" target="_blank" rel="noopener">3650082</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">秋田県能代市二ツ井町字比井野</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">2</td></tr><tr class="b1">
+<td class="c ok">✓</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">2</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3650082" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3650082" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/tohoku/fukushima/dim1002/3709108/show.html" target="_blank" rel="noopener">3709108</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">福島県南相馬市原町区益田字西迫</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">2</td></tr><tr class="b1">
+<td class="c ok">✓</td><td class="c ok">✓</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">2</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3709108" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3709108" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/kyushu/fukuoka/dim1004/3493132/show.html" target="_blank" rel="noopener">3493132</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">福岡県八女市黒木町今</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">2</td></tr><tr class="b1">
+<td class="c ok">✓</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c miss">欠</td><td class="c ok">✓</td>
+<td class="cnum">2</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3493132" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3493132" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/chugoku/yamaguchi/dim1002/3503883/show.html" target="_blank" rel="noopener">3503883</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">山口県下関市椋野町１丁目11-7</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">1</td></tr><tr class="b1">
+<td class="c ok">✓</td><td class="c ok">✓</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td>
+<td class="cnum">1</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3503883" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3503883" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/chugoku/okayama/dim1001/3508716/show.html" target="_blank" rel="noopener">3508716</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">岡山県倉敷市児島唐琴２丁目3-23</td>
-<td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">1</td></tr><tr class="b1">
+<td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c ok">✓</td>
+<td class="cnum">1</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3508716" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3508716" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/tohoku/iwate/dim1002/3695233/show.html" target="_blank" rel="noopener">3695233</a></th>
 <td class="kind"><span class="chip k-ip">一棟</span></td>
 <td class="loc">岩手県二戸郡一戸町高善寺字傘木</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">1</td></tr><tr class="b1">
+<td class="c ok">✓</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c miss">欠</td>
+<td class="cnum">1</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3695233" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3695233" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/kanto/saitama/dim3001/3522663/show.html" target="_blank" rel="noopener">3522663</a></th>
 <td class="kind"><span class="chip k-tc">土地</span></td>
 <td class="loc">埼玉県幸手市中４丁目</td>
-<td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">1</td></tr><tr class="b1">
+<td class="c na">—</td><td class="c na">—</td><td class="c na">—</td><td class="c na">—</td><td class="c miss">欠</td>
+<td class="cnum">1</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3522663" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3522663" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/kanto/tokyo/dim3001/3534053/show.html" target="_blank" rel="noopener">3534053</a></th>
 <td class="kind"><span class="chip k-tc">土地</span></td>
 <td class="loc">東京都多摩市連光寺１丁目</td>
-<td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">1</td></tr><tr class="b1">
+<td class="c na">—</td><td class="c na">—</td><td class="c na">—</td><td class="c na">—</td><td class="c miss">欠</td>
+<td class="cnum">1</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3534053" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3534053" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/kanto/saitama/dim3001/3554135/show.html" target="_blank" rel="noopener">3554135</a></th>
 <td class="kind"><span class="chip k-tc">土地</span></td>
 <td class="loc">埼玉県幸手市中３丁目</td>
-<td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">1</td></tr><tr class="b1">
+<td class="c na">—</td><td class="c na">—</td><td class="c na">—</td><td class="c na">—</td><td class="c miss">欠</td>
+<td class="cnum">1</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3554135" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3554135" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/kanto/kanagawa/dim3001/3554601/show.html" target="_blank" rel="noopener">3554601</a></th>
 <td class="kind"><span class="chip k-tc">土地</span></td>
 <td class="loc">神奈川県足柄上郡大井町金子</td>
-<td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c miss" aria-label="記載なし">欠</td>
-<td class="cnum">1</td></tr><tr class="b1">
+<td class="c na">—</td><td class="c na">—</td><td class="c na">—</td><td class="c na">—</td><td class="c miss">欠</td>
+<td class="cnum">1</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3554601" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3554601" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b1">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3680195/show.html" target="_blank" rel="noopener">3680195</a></th>
 <td class="kind"><span class="chip k-kd">戸建</span></td>
 <td class="loc">北海道久遠郡せたな町北檜山区北檜山</td>
-<td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td><td class="c miss" aria-label="記載なし">欠</td><td class="c ok" aria-label="記載あり">✓</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">1</td></tr><tr class="b0">
+<td class="c ok">✓</td><td class="c ok">✓</td><td class="c miss">欠</td><td class="c ok">✓</td><td class="c ok">✓</td>
+<td class="cnum">1</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3680195" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3680195" data-who="igarashi"><span class="box"></span></label></td>
+</tr><tr class="b0">
 <th scope="row" class="pid"><a href="https://www.rakumachi.jp/syuuekibukken/tokai/aichi/dim3001/3665798/show.html" target="_blank" rel="noopener">3665798</a></th>
 <td class="kind"><span class="chip k-tc">土地</span></td>
 <td class="loc">愛知県名古屋市中川区中郷３丁目</td>
-<td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c na" aria-label="対象外">—</td><td class="c ok" aria-label="記載あり">✓</td>
-<td class="cnum">0</td></tr></tbody></table></div>
+<td class="c na">—</td><td class="c na">—</td><td class="c na">—</td><td class="c na">—</td><td class="c ok">✓</td>
+<td class="cnum">0</td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3665798" data-who="nomoto"><span class="box"></span></label></td>
+<td class="ck"><label class="cbx"><input type="checkbox" data-id="3665798" data-who="igarashi"><span class="box"></span></label></td>
+</tr></tbody></table></div>
 
 <div class="sechead"><h2>推奨する記載フォーマット</h2>
 <p>現状は自由文が中心で項目が埋もれています。冒頭に数値ブロックを置き、その後に訴求文を続ける構成に統一すると読み手が判断しやすくなります。</p></div>
@@ -371,250 +540,564 @@ img{max-width:100%}
 <p class="note">戸建（1 戸）の場合は「現況入居状況：賃貸中（オーナーチェンジ）」または「現況：空室（想定賃料 月額 00,000円）」と明記すれば、空室率・賃貸中率の要件を満たせます。</p>
 
 <div class="sechead"><h2>物件別の現行紹介文と欠落項目</h2>
-<p>欠落数の多い順に全 40 件。修正時はこの Point 欄を上のフォーマットに沿って書き換えます。</p></div>
+<p>欠落数の多い順に全 40 件。修正時はこの Point 欄を上のフォーマットに沿って書き換え、済んだらチェックを入れてください。</p></div>
 <div class="cards"><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1002/3716742/show.html" target="_blank" rel="noopener">3716742</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>北海道名寄市 1棟アパート</h3><p class="ad">北海道名寄市東五条南３丁目</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">賃貸中率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>AP 管理会社あり(継承可・縛りなし)・ 戸建 自主管理(新規委託相談可)</p><p>本物件はアパートと戸建ての2物件セット販売。単独売却不可</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3716742" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3716742" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3716742"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3604651/show.html" target="_blank" rel="noopener">3604651</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>北海道網走市 戸建賃貸</h3><p class="ad">北海道網走市字大曲</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">賃貸中率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>賃貸募集や修繕不要で、購入後すぐに家賃が入ります!</p><p>コンビニまで徒歩3分!国道238号線やバス停に近く、買い物や通勤通学に便利な環境!</p><p>平坦な角地で、日当たり通風良好!道路付けが良く、地方で必須の駐車場もあり、車での移動が楽です!</p><p>退去予定なし、連帯保証人あり、管理会社付きで、遠方にお住いの方も安心して賃貸経営が可能です。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3604651" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3604651" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3604651"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3684231/show.html" target="_blank" rel="noopener">3684231</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>北海道久遠郡せたな町 戸建賃貸</h3><p class="ad">北海道久遠郡せたな町瀬棚区三本杉</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">賃貸中率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>初期投資を抑え、資産形成への第一歩: 魅力的な価格で一戸建て物件を取得できるため、手軽に不動産オーナーとしての資産形成を始める絶好の機会です。</p><p>北海道の豊かな自然と共生する立地: 地域固有の魅力を持ち、特定の層からのニーズが見込めるため、長期的な資産価値の維持が期待できます。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3684231" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3684231" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3684231"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/kanto/chiba/dim1001/3591801/show.html" target="_blank" rel="noopener">3591801</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>千葉県香取市 1棟マンション</h3><p class="ad">千葉県香取市小見川</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>小見川駅徒歩5分の駅近!便利な好立地!平坦な角地で道路付け◎!視認性&amp;日当り通風良好!</p><p>AG最大1960万位迄</p><p>内装綺麗でGOOD!修繕履歴もあり!!1階店舗はKDDIが平成18年から長期賃貸中!</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3591801" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3591801" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3591801"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/tohoku/yamagata/dim1002/3610058/show.html" target="_blank" rel="noopener">3610058</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>山形県新庄市 1棟アパート</h3><p class="ad">山形県新庄市小田島町</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">賃貸中率</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>土地積算130万円以上!</p><p>戸建投資家必見!2世帯管理で手間いらずの収益基盤を</p><p>AGサポートにて融資評価Max170万あり</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3610058" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3610058" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3610058"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/kyushu/nagasaki/dim1002/3674905/show.html" target="_blank" rel="noopener">3674905</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>長崎県長崎市 1棟アパート</h3><p class="ad">長崎県長崎市片淵５丁目</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>長崎市片淵に佇む「メゾンエクセル片淵」は、将来の資産価値向上を見据えた投資家に理想的な共同住宅です。築年数は経過しているものの、堅実な木造スレート葺2階建の構造は、アイデア次第で魅力を最大限に引き出すリノベーションの可能性を秘めています。</p><p>総床面積157.95㎡のゆとりある空間は、多様な入居者ニーズに応える間取り変更やコンバージョンに適しています。現代のライフスタイルに合わせたデザインと機能性を取り入れることで、高稼働率と賃料アップを実現し、収益性の最大化を目指せます。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3674905" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3674905" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3674905"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/tohoku/miyagi/dim1002/3699061/show.html" target="_blank" rel="noopener">3699061</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>宮城県気仙沼市 1棟アパート</h3><p class="ad">宮城県気仙沼市松崎浦田</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>現状62.5%の稼働率ながら、賃料収入の安定基盤を既に確立。空室を戦略的に埋めることで、満室時年間家賃341万円越えの収益最大化が期待できます。</p><p>木造2階建ての共同住宅という特性を活かし、現代の入居者ニーズに合わせたリノベーションやコンバージョンにより、物件価値と競争力を飛躍的に向上させ、さらなる収益増を目指せます。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3699061" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3699061" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3699061"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/tohoku/yamagata/dim1002/3720041/show.html" target="_blank" rel="noopener">3720041</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>山形県鶴岡市 1棟アパート</h3><p class="ad">山形県鶴岡市末広町</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>商業地域に立地し周辺施設へのアクセス良好な都市型アパート。現在5戸入居・入居率83%の稼働実績があり、経験豊富な管理会社が賃貸管理を一元的に担当。安定運用が期待できる高利回り物件です。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3720041" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3720041" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3720041"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/tohoku/iwate/dim1004/3491678/show.html" target="_blank" rel="noopener">3491678</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>岩手県久慈市 戸建賃貸</h3><p class="ad">岩手県久慈市大川目町第１４地割52-6</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">賃貸中率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>販売価格50万円に対し想定月額賃料2万円（年24万円）で高利回り。手頃な価格帯投資として資産効率が高い。</p><p>土地400.05㎡（121坪）、52番6（380.53㎡）と52番7（19.52㎡）の2筆所有権。郊外エリアとしては大型の敷地面積。</p><p>現在空き家のため、賃貸募集・活用方法は購入者の判断で即対応可能。地中に井戸あり（電動ポンプ給水）・北側通路接道の状況は現地確認要。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3491678" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3491678" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3491678"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3515494/show.html" target="_blank" rel="noopener">3515494</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>北海道留萌市 戸建賃貸</h3><p class="ad">北海道留萌市沖見町６丁目</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">空室率</span><span class="bd">賃貸中率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>現況利回り24%を確保しており、購入後すぐに高い収益が見込める投資物件です。</p><p>少額から始められる高利回り投資として検討しやすい点も魅力。</p><p>駐車場複数台確保でき、地方エリアの賃貸・自己利用ニーズに対応できます。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3515494" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3515494" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3515494"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/kanto/gunma/dim1004/3636767/show.html" target="_blank" rel="noopener">3636767</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>群馬県吾妻郡嬬恋村 戸建賃貸</h3><p class="ad">群馬県吾妻郡嬬恋村大字大前778-3</p></header>
 <div class="badges"><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">賃貸中率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>販売価格50万円に対し、年間想定家賃24万円・表面利回り約48%の高利回り水準。</p><p>土地216.69㎡（65.54坪）の所有権。固定資産評価額は土地約107万円・建物約22万円。</p><p>低価格帯のため、自己資金中心での取得が可能なレンジ。近隣にキャンプ場があり観光・別荘需要が見込めるエリア。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3636767" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3636767" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3636767"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/tohoku/akita/dim1004/3651431/show.html" target="_blank" rel="noopener">3651431</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>秋田県秋田市 戸建賃貸</h3><p class="ad">秋田県秋田市土崎港東１丁目</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>月額2.8万円（年33.6万円）で賃貸中のため、購入後すぐに家賃収入が得られます。約5.5年で投資回収可能。</p><p>インカム運用後に売却も視野に入れた出口戦略も魅力。</p><p>短期・中期でのキャピタルゲイン獲得も期待できます。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3651431" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3651431" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3651431"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3695088/show.html" target="_blank" rel="noopener">3695088</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>北海道稚内市 戸建賃貸</h3><p class="ad">北海道稚内市栄４丁目</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>2021年10月から継続入居中で即収益化。駐車場2台完備、土地369.89㎡の広い敷地。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3695088" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3695088" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3695088"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/tohoku/iwate/dim1002/3590247/show.html" target="_blank" rel="noopener">3590247</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>岩手県宮古市 1棟アパート</h3><p class="ad">岩手県宮古市黒田町</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>現況26%以上・満室想定34%以上の高利回り物件!</p><p>土地積算評価88%以上の高積算!AGビジネスサポートで最大360万円の融資評価出ています!!</p><p>バス停・スーパー・コンビニ・病院・保育園・小学校が徒歩10分圏内にある非常に便利な立地!</p><p>雨漏り・白蟻・傾き無し!記録はありませんが、必要な修繕はその都度行っております!</p><p>駐車場は、入居者が個人で隣地の月ぎめ駐車場を借りています(オーナー負担無し)!</p><p>ガス・水道・電気は入居者個人で契約しているため年間ランニングコストは固都税3.5万程度!</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3590247" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3590247" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3590247"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/tohoku/aomori/dim1002/3650121/show.html" target="_blank" rel="noopener">3650121</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>青森県むつ市 1棟アパート</h3><p class="ad">青森県むつ市大畑町南町</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>500万円で年間168万円の収益が見込める、キャッシュフロー重視の収益投資におすすめです。</p><p>101・201・202号室の4戸中３戸が入居中のため、即時に現況月収10.5万円（年収126万円）の収益が見込めます。</p><p>空室1戸（102号室）に入居が決まれば満室利回り29.4%に到達。ほぼ満室状態からのスタートが強み。</p><p>東北地方では自動車が生活必需品。全戸（４台分）駐車場確保済みは入居者ニーズに直結します。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3650121" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3650121" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3650121"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1002/3676138/show.html" target="_blank" rel="noopener">3676138</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>北海道釧路市 1棟アパート</h3><p class="ad">北海道釧路市春採２丁目</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>DK4戸中2戸賃貸中！現況でも利回り22.1%、満室想定44.1%の高利回り物件！</p><p>全室バストイレ別！人気の都市ガス、公営上下水道の物件です。</p><p>自主管理で、年間ランニングコストは固都税19,600円程度です！</p><p>令和8年6月に空室1室の給水管亀裂修繕済み！賃貸時の追加工事不要！</p><p>平坦な角地で、日当たり通風良好です！</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3676138" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3676138" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3676138"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1002/3695156/show.html" target="_blank" rel="noopener">3695156</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>北海道稚内市 1棟アパート</h3><p class="ad">北海道稚内市宝来３丁目</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>現況賃貸中（3室合計月額99,000円）のため取得後すぐに収益化が可能です。販売価格540万円に対し土地積算評価は118万円越え（積算比率21.9%）。JR宗谷本線「稚内」駅より徒歩18分です。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3695156" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3695156" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3695156"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/shikoku/kochi/dim1002/3715384/show.html" target="_blank" rel="noopener">3715384</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>高知県須崎市 1棟アパート</h3><p class="ad">高知県須崎市下分甲</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>現況37%・満室142%の高利回りで現在6戸入居中でも年168万円の収入。満室時は648万円／年、投資額を約1年で回収できる計算になります。</p><p>建物を除いた更地価値でも投資回収が可能な物件。</p><p>4筆合計583㎡を所有権で取得。将来的な建替・用途変更・転売でも高いポテンシャルの物件です。</p><p>現在6戸稼働中。空室16戸が入居すれば年間収入は648万円越えへ。</p><p>行政・福祉事務所経由の安定入居。低価格帯の賃料は高齢者・生活保護受給者の需要に合致。</p><p>現況入居者の滞納・未収金なし。入退予定もなしです</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3715384" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3715384" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3715384"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/shikoku/ehime/dim1001/3720034/show.html" target="_blank" rel="noopener">3720034</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>愛媛県四国中央市 1棟マンション</h3><p class="ad">愛媛県四国中央市中之庄町</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>愛媛県四国中央市にある一棟RC造マンションです！</p><p>土地積算評価2,338万円＞売値の高積算物件！</p><p>現在6戸/12戸賃貸中！満室想定41%、現況でも20％の高利回り！</p><p>居住中の6名は10 年以上賃貸中！滞納・退去予定無しで、安定した賃貸経営が期待できます！</p><p>空室はリフォームによるバリューアップで、さらなる賃料収入の向上が期待できます。</p><p>井戸水利用で賃借人は水道代無料！エレベーター無しでランニングコストを抑えられます。</p><p>全室3DKの広い間取りのファミリータイプで、バストイレ別！平坦地で日当たり通風良好！</p><p>敷地内駐車場あり軽5台~6台駐車可！うち4台契約中。南側の隣地に月ぎめ駐車場もあり!</p><p>法人のオーナーがこまめに修繕管理していました。</p><p>四国中央市は製紙業が盛ん。大王製紙など大手企業も多数あり、社宅需要など安定した賃貸ニーズが見込めます。</p><p>四国中央市は四国4県の県庁所在地へ車で約1時間でアクセス可。平均年収も愛媛県内では高く、18歳までの医療費無料、紙おむつの無償提供など子育て世代に手厚い施策が実施。温暖な瀬戸内気候で台風・豪雨・積雪が少なく、住みやすい場所です。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3720034" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3720034" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3720034"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3496410/show.html" target="_blank" rel="noopener">3496410</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>北海道紋別市 戸建賃貸</h3><p class="ad">北海道紋別市落石町１丁目</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">空室率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>オーナーチェンジ収益物件になります。</p><p>現在満室中なので即収益化することができおすすめな物件になります。</p><p>現況利回りも25%ごえで自然豊かな街並みなので人気があるエリアになります。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3496410" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3496410" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3496410"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/kyushu/oita/dim1004/3501574/show.html" target="_blank" rel="noopener">3501574</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>大分県中津市 戸建賃貸</h3><p class="ad">大分県中津市大字高瀬</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">空室率</span><span class="bd">賃貸中率</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>現況利回り：25.00%</p><p>現況収入：480,000円</p><p>積算価格：2,471,148円</p><p>リースバックになるので安定収入が見込めます。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3501574" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3501574" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3501574"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/tohoku/iwate/dim1004/3616571/show.html" target="_blank" rel="noopener">3616571</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>岩手県盛岡市 戸建賃貸</h3><p class="ad">岩手県盛岡市北山２丁目</p></header>
 <div class="badges"><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">賃貸中率</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>積算価格666.5万円は販売価格220万円の約3.0倍（303%）。購入直後から高い資産価値を確保。</p><p>路線価 3.1万円/㎡ × 215.37㎡（65.15坪）の広大な土地。高い積算評価が担保力・資産性を裏付ける。</p><p>想定月額賃料55000円で、表面利回り30.0%という高利回り物件。</p><p>空家（空室）のため、賃貸・リノベーション・転売いずれの戦略にも即対応可能。</p><p>宅地・市街化区域 ─ 将来的な建替え・再開発の自由度が高い</p><p>岩手県最大の都市・盛岡市内立地。JR山田線「上盛岡駅」徒歩19分で安定した賃貸需要が期待できます。</p><p>第一種低層住居専用地域（建蔽率50%・容積率80%）で良好な住環境が保護された閑静なエリア。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3616571" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3616571" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3616571"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/chugoku/yamaguchi/dim1004/3698984/show.html" target="_blank" rel="noopener">3698984</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>山口県柳井市 戸建賃貸</h3><p class="ad">山口県柳井市柳井</p></header>
 <div class="badges"><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>販売価格208万円と低価格帯ながら、満室想定表面利回り19.0%の収益物件です。現況賃貸中(月額賃料33,000円)のため購入後すぐに家賃収入を得られます。宅地239.00㎡(登記簿地積)を有し、建蔽率60%・容積率100%です。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3698984" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3698984" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3698984"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3705989/show.html" target="_blank" rel="noopener">3705989</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>北海道稚内市 戸建賃貸</h3><p class="ad">北海道稚内市宝来４丁目</p></header>
 <div class="badges"><span class="bd">表面利回り</span><span class="bd">現況利回り</span><span class="bd">空室率</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>2戸とも入居中で現況年収86.4万円、地代控除後も高水準の利回りが期待できる借地権付き戸建てです。土地積算評価は996万円越えと、販売価格231万円を大きく上回ります。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3705989" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3705989" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3705989"></span>
+</div>
 </article><article class="card sev">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3716275/show.html" target="_blank" rel="noopener">3716275</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>北海道北見市 戸建賃貸</h3><p class="ad">北海道北見市東相内町</p></header>
 <div class="badges"><span class="bd">現況利回り</span><span class="bd">空室率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>賃貸中の戸建3棟一括売り！複数戸のため空室リスク分散が可能です。</p><p>現況満室表面利回り22.4%と高利回り！購入後すぐに家賃収入があります。</p><p>令和元年頃、外壁塗装済みで直近の大規模修繕費を抑えられます。</p><p>保証会社2戸＋連帯保証人1戸あり。滞納・退去予定・トラブルなし。</p><p>賃借人は全員日本人の勤め人で長期賃貸中です。</p><p>農地転用は売主負担で実施の上引渡し、初期費用を抑えられます。</p><p>北側隣接地より引込している上水道管は、周辺隣接地と共同使用している私設管。</p><p>2階の屋根裏部屋は未登記。</p><p>家屋番号651番60の物置が北側隣接地（651番59）へ越境している。</p><p>三角屋根特有の屋根からの落雪の可能性がある。</p><p>登記地目は田だが現況は宅地。農地転用は売主負担とし、引渡しまでに地目変更予定。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3716275" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3716275" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3716275"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/chugoku/yamaguchi/dim1001/3493098/show.html" target="_blank" rel="noopener">3493098</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>山口県下関市 1棟マンション</h3><p class="ad">山口県下関市豊浦町大字川棚7277-3</p></header>
 <div class="badges"><span class="bd">現況利回り</span><span class="bd">空室率</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>**1. 積算評価が販売価格を上回る！融資戦略に適してます**</p><p>販売価格8,500万円に対し、積算価格は約10,070万円。</p><p>積算評価が販売価格を上回る**（積算評価率118%）**ため、</p><p>金融機関の評価が高く、融資を引き出しやすい良好な投資案件です。</p><p>**2. 残存耐用年数14年！減価償却による節税メリット**</p><p>鉄筋コンクリート造（RC造）で残存耐用年数は14年を確保。</p><p>この期間、大きな減価償却費を計上することで、高い節税効果を発揮します。</p><p>**3. ほぼ満室稼働中！信じがたい想定利回り14.01%**</p><p>現在ほぼ満室で稼働中 。満室想定年収は11,916,000円、**想定利回りは14.01%**という高水準です 。</p><p>リフォーム済みで、駅近（徒歩6分）・国道沿いの立地で安定した収益が見込めます。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3493098" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3493098" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3493098"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1002/3503881/show.html" target="_blank" rel="noopener">3503881</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>北海道岩見沢市 1棟アパート</h3><p class="ad">北海道岩見沢市上幌向南一条３丁目1250-15</p></header>
 <div class="badges"><span class="bd">空室率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>岩見沢市上幌向エリアの1棟アパート。</p><p>JR函館本線「上幌向」駅より徒歩6分。</p><p>全6戸中、一部賃貸中の収益物件です。</p><p>■所在地： 北海道岩見沢市上幌向南一條3-1250-15</p><p>■土地面積： 455.89㎡（約137.91坪）</p><p>■建物面積： 233.28㎡（約70.57坪）</p><p>■構造： 木造2階建</p><p>■築年数： 1976年1月（築49年）</p><p>■駐車場： 6台</p><p>■用途地域： 第一種低層住居専用地域（建蔽率60％／容積率200％）</p><p>■接道： 南東側公道 幅員8m 接道約14.5m</p><p>【収益情報】</p><p>満室想定収入：1,980,000円／年（約16.5万円／月）</p><p>現況収入：1,380,000円／年</p><p>満室想定利回り：約31.58％</p><p>現況利回り：約22.01％</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3503881" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3503881" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3503881"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/chugoku/hiroshima/dim1001/3608164/show.html" target="_blank" rel="noopener">3608164</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>広島県三次市 1棟マンション</h3><p class="ad">広島県三次市南畑敷町</p></header>
 <div class="badges"><span class="bd">現況利回り</span><span class="bd">空室率</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>表面利回り36.0%！売価3300万円に対し、満室想定年間収入は1188万円。NOI（純収益）ベースでも年間約1079万円、CCR 32.7%を実現。わずか3.1年で投資回収が可能な圧倒的高利回り物件です。</p><p>土地積算4296万円で売価の130%、大幅な積算超過。建物はRC造の実質無償取得に近い水準です。資産の下支えが強い物件です。</p><p>法定耐用年数47年（築51年）のため、残存耐用年数は0年。簡便法による税務上の償却年数が短く、建物部分を短期間で償却でき、所得税・法人税の圧縮効果が見込めます。再調達価格18万円/m?×1206m?＝約2.17億円相当のRC造建物を、わずか3300万円で取得できる案件です。</p><p>内部は非常に綺麗、軽微な原状回復で賃貸開始可能。法人が社宅として適切に維持管理してきたため、内部は非常に綺麗な状態です。クリーニング程度の軽微な原状回復で賃貸開始が可能とのことで、初期投資を最小限に抑えられます。</p><p>敷地面積約637坪。賃貸運用に加え、将来的な建替え、駐車場経営、福祉施設転用など多様な活用が可能です。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3608164" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3608164" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3608164"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/tohoku/akita/dim1002/3650082/show.html" target="_blank" rel="noopener">3650082</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>秋田県能代市 1棟アパート</h3><p class="ad">秋田県能代市二ツ井町字比井野</p></header>
 <div class="badges"><span class="bd">現況利回り</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>200万円の販売価格に対し満室時年収103万円越えの高利回り。表面利回り51.6%という圧倒的なキャッシュフロー創出力。</p><p>購入直後から2戸稼働中・月43,000円の収入が確保できる。現況でも利回り25.8%。</p><p>空室2戸。低コストリフォームで満室化すれば、月収が86,000円へ倍増。</p><p>生活保護・高齢者向けなど需要層に合わせた賃貸戦略で、長期・安定稼働が期待できる。</p><p>イオンスーパーセンターが近くにあり生活利便性が高い。</p><p>現在は井戸水だが上水道接続が可能。設備改善の柔軟性がある。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3650082" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3650082" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3650082"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/tohoku/fukushima/dim1002/3709108/show.html" target="_blank" rel="noopener">3709108</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>福島県南相馬市 1棟アパート</h3><p class="ad">福島県南相馬市原町区益田字西迫</p></header>
 <div class="badges"><span class="bd">空室率</span><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>価格990万円と1,000万円未満で購入しやすく、表面利回り24.1%・現況利回り18.1%を確保。全4戸中3戸が長期入居中で、駐車場も8台分（現況3台使用）確保しています。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3709108" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3709108" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3709108"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/kyushu/fukuoka/dim1004/3493132/show.html" target="_blank" rel="noopener">3493132</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>福岡県八女市 戸建賃貸</h3><p class="ad">福岡県八女市黒木町今</p></header>
 <div class="badges"><span class="bd">現況利回り</span><span class="bd">賃貸中率</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>現況は空室です。想定賃料（月額20,000円）でご賃貸した場合の表面利回りは48.0%です。</p><p>積算評価（土地のみ）約96万円に対し、販売価格は50万円と積算評価を大きく下回る価格設定です。</p><p>八女市役所黒木支所・銀行・小中学校等の生活利便施設が徒歩圏に揃うエリアです。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3493132" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3493132" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3493132"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/chugoku/yamaguchi/dim1002/3503883/show.html" target="_blank" rel="noopener">3503883</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>山口県下関市 1棟アパート</h3><p class="ad">山口県下関市椋野町１丁目11-7</p></header>
 <div class="badges"><span class="bd">空室率</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>販売価格313万円に対し土地積算評価は約369万円（積算比率約118%）? 販売価格が土地の積算価値を下回る水準での販売</p><p>現況3戸入居で年間収入816,000円確保済み（現況利回り26.1%）。満室時の表面利回りは70.1%（満室想定年収2,196,000円）</p><p>下関IC近接の第一種住居地域。山口県下関市は人口約24万人の拠点都市で、単身者向け賃貸需要が継続するエリア</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3503883" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3503883" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3503883"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/chugoku/okayama/dim1001/3508716/show.html" target="_blank" rel="noopener">3508716</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>岡山県倉敷市 1棟マンション</h3><p class="ad">岡山県倉敷市児島唐琴２丁目3-23</p></header>
 <div class="badges"><span class="bd">表面利回り</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>577万円という低価格帯で取得可能なRC造4棟14戸一括物件。現況利回り30.0%・満室想定51.5%という高収益案件。敷地1,308㎡の広大な宅地（所有権）付き。</p><p>積算評価約1,220万円（積算比率211%）と販売価格を大きく上回る土地評価。RC造・建物は築55年で残存耐用年数0年だが土地価値で十分な積算裏付けがある。</p><p>9戸の空室に稼働余地がある。現在5戸入居中で即時賃料収入あり。稼働率を高めることで収益を大幅に改善できる。電柱収入（年間\16,870）あり。</p><p>・南西側接道（幅員1.2m）は建築基準法第42条の道路に該当しません。再建築時は道路状況を要確認。</p><p>・北東側・南東側前面道路は建築基準法第42条第2項道路（2項道路）のため、再建築時には道路中心線から2m後退が必要です。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3508716" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3508716" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3508716"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/tohoku/iwate/dim1002/3695233/show.html" target="_blank" rel="noopener">3695233</a>
 <span class="chip k-ip">一棟</span></div>
 <h3>岩手県二戸郡一戸町 1棟アパート</h3><p class="ad">岩手県二戸郡一戸町高善寺字傘木</p></header>
 <div class="badges"><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>現況4戸入居・6戸空室で、満室稼働時の年間家賃収入は現況134.4万円から332.4万円まで増加余地があります。販売価格480万円に対し現況利回り28.0%、満室想定利回り69.3%です。敷地内に駐車場6台分があります（現況：賃料は徴収していません）。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3695233" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3695233" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3695233"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/kanto/saitama/dim3001/3522663/show.html" target="_blank" rel="noopener">3522663</a>
 <span class="chip k-tc">土地</span></div>
 <h3>埼玉県幸手市 土地</h3><p class="ad">埼玉県幸手市中４丁目</p></header>
 <div class="badges"><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>一都三県で、想定利回り８％が狙える新築アパート企画付き土地のご紹介です！</p><p>建築条件なし！お好きな工務店で建築可能です！</p><p>弊社でも工務店のご紹介可能です！</p><p>(参考プラン:家賃想定年収794万4000円、1K×12戸)</p><p>東武日光線「幸手」駅まで徒歩14分前後で、通勤・通学・買い物に便利な立地！</p><p>住宅需要が安定したエリアのため、戸建用地・分譲用地として出口戦略が描きやすい土地！！</p><p>平坦地で道路付けも良く、日当たり通風良好！</p><p>解体後の更地引き渡しです。解体費用かかりません！</p><p>第二幸手幼稚園 徒歩4分、市立幸手中学校 徒歩3分、クスリのアオキ 幸手北店 徒歩2分、幸手中郵便局 徒歩7分、コンビニのローソン幸手中四丁目店 徒歩9分など、周辺に教育機関や商店が多数ある、生活に便利な環境です！</p><p>■備考</p><p>・測量なし公簿売買、土地のみの売買です。建築費用は別途かかります。土地2,125万円(参考建築費7,800万円)。</p><p>・東側の公道は昭和57年 計画道路に指定となっていますが、令和6年12月現在、施工予定はありません。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3522663" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3522663" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3522663"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/kanto/tokyo/dim3001/3534053/show.html" target="_blank" rel="noopener">3534053</a>
 <span class="chip k-tc">土地</span></div>
 <h3>東京都多摩市 土地</h3><p class="ad">東京都多摩市連光寺１丁目</p></header>
 <div class="badges"><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>実需ニーズの高い聖蹟桜ヶ丘エリアで、建売用地としても反響多数の物件！</p><p>坪単価31.6万円周辺相場は坪45万円程度で、魅力的な価格帯です！</p><p>43条但書取得済みのため、再建築可能な物件として取引可能です！</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3534053" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3534053" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3534053"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/kanto/saitama/dim3001/3554135/show.html" target="_blank" rel="noopener">3554135</a>
 <span class="chip k-tc">土地</span></div>
 <h3>埼玉県幸手市 土地</h3><p class="ad">埼玉県幸手市中３丁目</p></header>
 <div class="badges"><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>一都三県で想定利回り８.5％が狙える8世帯の新築アパート企画付き土地です！</p><p>建築条件なし！お好きな工務店で建築可能です！</p><p>弊社でも工務店のご紹介可能です！</p><p>■参考プラン:家賃想定年収520.8万円、1K×8戸、専有面積：22.35～22.56㎡</p><p>バストイレ別、独立洗面台、室内洗濯機置場、クローゼットなど人気の設備付き！ゆとりのある広さで生活しやすいプラン♪</p><p>■交通：東武日光線「幸手」駅まで徒歩14分前後！通勤・通学・買い物に便利な立地！住宅需要が安定したエリアのため、戸建用地・分譲用地として出口戦略が描きやすい土地です！</p><p>■PR：平坦地で道路付けも良く、日当たり通風も良好！</p><p>解体後の更地引き渡しで、解体費用かかりません！</p><p>■周辺環境：ドラッグストア 徒歩4分、幸手市役所 徒歩6分、ワークマン徒歩6分、埼玉りそな銀行局 徒歩5分、コンビニのローソン幸手中四丁目店 徒歩7分など、周辺に商店が多数ある、生活に便利な環境です！</p><p>■備考</p><p>・確定測量後、土地のみの売買になります。※ご相談承ります</p><p>建築費用は別途かかります。(参照プラン建築費5,100万円)</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3554135" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3554135" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3554135"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/kanto/kanagawa/dim3001/3554601/show.html" target="_blank" rel="noopener">3554601</a>
 <span class="chip k-tc">土地</span></div>
 <h3>神奈川県足柄上郡大井町 土地</h3><p class="ad">神奈川県足柄上郡大井町金子</p></header>
 <div class="badges"><span class="bd">積算価格</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>国道255号線沿いは大型ショッピングモール、飲食店、商業施設が多く、買い物が便利です!</p><p>県道72号線沿いで国道255線も近く、道路付けと視認性が良い平坦地!日当たり通風も良好!</p><p>近くにキャンプ場、ハーブガーデン、ゴルフ場があり、富士山も見えて自然を楽しめます!</p><p>町役場 徒歩5分!保育園、スーパー、病院等が徒歩9分以内!生活しやすいエリアです!</p><p>確定測量と残置物撤去後のお引渡し!初期費用が抑えられ、解体や建築に早く取り組めます!</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3554601" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3554601" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3554601"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/hokkaido/hokkaido/dim1004/3680195/show.html" target="_blank" rel="noopener">3680195</a>
 <span class="chip k-kd">戸建</span></div>
 <h3>北海道久遠郡せたな町 戸建賃貸</h3><p class="ad">北海道久遠郡せたな町北檜山区北檜山</p></header>
 <div class="badges"><span class="bd">空室率</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>■物件概要</p><p>・所在地：北海道久遠郡せたな町北檜山区北檜山1-3</p><p>・販売価格：336万円</p><p>・表面利回り：25.00%（満室想定時）</p><p>・現況利回り：25.00%</p><p>・土地面積：223.87㎡</p><p>・建物面積（延床面積）：39.66㎡（登記上。増築未登記あり、現況専有面積合計113.19㎡）</p><p>・構造：木造</p><p>・築年：1970年（築56年）</p><p>・現況：満室賃貸中（テナント2件入居中）</p><p>・積算評価：181.33万円（土地積算）</p><p>▼おすすめポイント</p><p>●表面・現況ともに利回り25.00%の高利回り物件</p><p>●近隣商業地域・建蔽率80％／容積率300％で土地活用の自由度が高い</p><p>●公道（幅員約21.8m）に約8.7m接道する好条件の敷地</p><p>◆特記事項</p><p>・登記上建物39.66㎡に対し増築部分は未登記（現況専有面積合計113.19㎡）</p><p>・防火指定／引渡時期／相続税路線価は概要書上「確認中」</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3680195" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3680195" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3680195"></span>
+</div>
 </article><article class="card ">
 <header><div class="hl"><a class="cid" href="https://www.rakumachi.jp/syuuekibukken/tokai/aichi/dim3001/3665798/show.html" target="_blank" rel="noopener">3665798</a>
 <span class="chip k-tc">土地</span></div>
 <h3>愛知県名古屋市中川区 土地</h3><p class="ad">愛知県名古屋市中川区中郷３丁目</p></header>
 <div class="badges"><span class="bd ok">欠落なし</span></div>
 <div class="pt"><span class="ptl">現行の Point 欄</span><p>名古屋市中川区の市街化区域にある建築条件なし、確定測量済みの更地です！</p><p>お好きなハウスメーカーで自由に住宅やアパートを建築可能！</p><p>土地積算評価2800万円で、積算評価率約85％で資産価値も十分！</p><p>準住居地域で建ぺい率60%、容積率300%という高い建築規制緩和を有しており、多角的な事業展開が可能です。主要道路に接道し、バス停より徒歩5分・2路線２駅利用可能で交通利便性も高く、新たな収益物件開発のポテンシャルを秘めています。</p><p>周囲は集合住宅が点在するエリアであり、住宅開発用地としてのニーズが期待できます。現況が更地であるために、スムーズな事業着手が見込めます。</p><p>都市ガス本支管が前面道路に通っており、上下水道本管も整備されています。ライフラインの引込み費用は買主負担となりますが、都市インフラが整っているため開発コストの予測がしやすく、計画の具体化を速やかに進められます。</p></div>
+<div class="ckrow">
+<label class="cbx wide"><input type="checkbox" data-id="3665798" data-who="nomoto"><span class="box"></span><span class="cl">野本チェック</span></label>
+<label class="cbx wide"><input type="checkbox" data-id="3665798" data-who="igarashi"><span class="box"></span><span class="cl">五十嵐チェック</span></label>
+<span class="stamp" data-stamp="3665798"></span>
+</div>
 </article></div>
 
-<footer>点検対象：楽待（rakumachi.jp）掲載中の自社物件 40 件／取得日 2026-09-05</footer>
+<footer>点検対象：楽待（rakumachi.jp）掲載中の自社物件 40 件／取得日 2026-09-05<br>
+チェック状況は端末内と共有サーバーの両方に保存されます。共有サーバーに一時的につながらない場合でも、チェックはその端末に残り、再接続時に反映されます。</footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+<script>
+(function(){
+  var ROOM='reatex-rakumachi-audit-2026-09';
+  var WHO={nomoto:'野本',igarashi:'五十嵐'};
+  var boxes=Array.prototype.slice.call(document.querySelectorAll('input[type=checkbox][data-id]'));
+  var ids=[];(function(){var s={};boxes.forEach(function(b){s[b.dataset.id]=1});ids=Object.keys(s)})();
+  var state={};           // id -> {nomoto:bool, igarashi:bool, at:{}}
+  var LS='rk-audit-'+ROOM;
+  var node=null, connected=false;
+
+  function loadLocal(){
+    try{var v=localStorage.getItem(LS); if(v) state=JSON.parse(v)||{};}catch(e){}
+  }
+  function saveLocal(){
+    try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}
+  }
+  function get(id){ return state[id]||(state[id]={nomoto:false,igarashi:false,at:{}}); }
+
+  function fmt(ts){
+    if(!ts) return '';
+    var d=new Date(ts);
+    if(isNaN(d)) return '';
+    var p=function(n){return ('0'+n).slice(-2)};
+    return (d.getMonth()+1)+'/'+d.getDate()+' '+p(d.getHours())+':'+p(d.getMinutes());
+  }
+
+  function render(){
+    boxes.forEach(function(b){
+      var s=get(b.dataset.id);
+      var v=!!s[b.dataset.who];
+      if(b.checked!==v) b.checked=v;
+    });
+    ids.forEach(function(id){
+      var s=get(id);
+      var el=document.querySelector('[data-stamp="'+id+'"]');
+      if(el){
+        var parts=[];
+        ['nomoto','igarashi'].forEach(function(w){
+          if(s[w]) parts.push(WHO[w]+' '+(fmt(s.at&&s.at[w])||'済'));
+        });
+        el.textContent=parts.join('　');
+      }
+      var done=s.nomoto&&s.igarashi;
+      document.querySelectorAll('input[data-id="'+id+'"]').forEach(function(b){
+        var tr=b.closest('tr'); if(tr) tr.classList.toggle('done',done);
+        var cd=b.closest('.card'); if(cd) cd.classList.toggle('done',done);
+      });
+    });
+    ['nomoto','igarashi'].forEach(function(w){
+      var n=ids.filter(function(id){return get(id)[w]}).length;
+      var pct=ids.length?n/ids.length*100:0;
+      var v=document.getElementById('pv-'+w), f=document.getElementById('pf-'+w);
+      if(v) v.innerHTML=n+'<small>/'+ids.length+'</small>';
+      if(f) f.style.width=pct.toFixed(1)+'%';
+    });
+    saveLocal();
+  }
+
+  function setStatus(ok,msg){
+    var d=document.getElementById('syncdot'), t=document.getElementById('synctext');
+    if(d) d.className='dot '+(ok?'on':'off');
+    if(t) t.textContent=msg;
+  }
+
+  function apply(id,data,fromRemote){
+    var s=get(id);
+    var changed=false;
+    ['nomoto','igarashi'].forEach(function(w){
+      if(typeof data[w]==='boolean' && s[w]!==data[w]){s[w]=data[w];changed=true;}
+      var k=w+'_at';
+      if(data[k]){ s.at=s.at||{}; if(s.at[w]!==data[k]){s.at[w]=data[k];changed=true;} }
+    });
+    if(changed&&fromRemote) render();
+    return changed;
+  }
+
+  loadLocal(); render();
+
+  // --- Gun.js リアルタイム同期 ---
+  function boot(){
+    if(typeof Gun!=='function'){ setStatus(false,'同期サーバーに接続できません（この端末には保存されます）'); return; }
+    var gun=Gun({peers:[
+      'https://gun-manhattan.herokuapp.com/gun',
+      'https://peer.wallie.io/gun',
+      'https://gundb-relay-mlccl.ondigitalocean.app/gun',
+      'https://relay.peer.ooo/gun'
+    ],localStorage:false});
+    node=gun.get(ROOM);
+    node.map().on(function(data,id){
+      if(!data||ids.indexOf(id)<0) return;
+      apply(id,data,true);
+      if(!connected){connected=true;setStatus(true,'同期中 — 他のメンバーの操作がリアルタイムで反映されます');}
+    });
+    setTimeout(function(){
+      if(!connected) setStatus(true,'同期中 — 他のメンバーの操作がリアルタイムで反映されます');
+    },2500);
+  }
+  try{boot()}catch(e){setStatus(false,'同期サーバーに接続できません（この端末には保存されます）')}
+
+  boxes.forEach(function(b){
+    b.addEventListener('change',function(){
+      var id=b.dataset.id,w=b.dataset.who,now=Date.now();
+      var s=get(id); s[w]=b.checked; s.at=s.at||{}; s.at[w]=b.checked?now:0;
+      render();
+      if(node){
+        var up={}; up[w]=b.checked; up[w+'_at']=b.checked?now:0;
+        try{node.get(id).put(up)}catch(e){}
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
